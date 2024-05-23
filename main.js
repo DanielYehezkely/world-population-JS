@@ -1,8 +1,5 @@
-import { ChartInitializer } from "./modules/chart.js";
-import { fetchCountries } from "./modules/fetchCountries.js";
+import App from "./modules/app.js";
 
-const init = new ChartInitializer();
+const app = new App();
+app.start();
 
-
-
-fetchCountries()
