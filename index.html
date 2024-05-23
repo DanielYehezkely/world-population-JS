@@ -3,23 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/reset.css">
   <link rel="stylesheet" href="./styles/spinner.css">
   <link rel="stylesheet" href="./styles/style.css">
   <title>World-Population</title>
 </head>
 <body>
-  <div id="landing-page" class="landing-page">
+  <div id="main-page" class="main-page">
     <h1 class="site-headline">World Population</h1>
-    <section id="showcase" class="showcase">
     <ul id="continents-container" class="continents-container">
-      <li class="continent-container" id="continent-container"><button id="continent-button" class="continent-button">Africa</button> </li>
-      <li class="continent-container" id="continent-container"><button id="continent-button" class="continent-button">Americas</button> </li>
-      <li class="continent-container" id="continent-container"><button id="continent-button" class="continent-button">Asia</button> </li>
-      <li class="continent-container" id="continent-container"><button id="continent-button" class="continent-button">Europe</button> </li>
-      <li class="continent-container" id="continent-container"><button id="continent-button" class="continent-button">Oceania</button> </li>
+      <li class="continent-container" id="continent-container"><button id="continent-button" class="continent-button btn">Africa</button> </li>
+      <li class="continent-container" id="continent-container"><button id="continent-button" class="continent-button btn">Americas</button> </li>
+      <li class="continent-container" id="continent-container"><button id="continent-button" class="continent-button btn">Asia</button> </li>
+      <li class="continent-container" id="continent-container"><button id="continent-button" class="continent-button btn">Europe</button> </li>
+      <li class="continent-container" id="continent-container"><button id="continent-button" class="continent-button btn">Oceania</button> </li>
     </ul>
-    </section>
+    <div class="chart-container" id="chart-container"><canvas id="chart" class="chart"></canvas></div>
+    <div id="countries-container" class="countries-container"></div>
   </div>
-  <script src="./main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const ctx = document.getElementById('chart');
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  });
+</script>
+  <script type="module" src="./main.js"></script>
 </body>
 </html>

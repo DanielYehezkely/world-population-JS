@@ -1,84 +1,91 @@
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: 62.5%;
-}
-
-@media only screen and (max-width: 800px) {
-  html {
-    font-size: 50%;
-  }
-}
-
-body {
-  font-weight: 400;
-  line-height: 1.6;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-ul {
-  list-style-type: none;
-}
-
-a {
-  text-decoration: none;
-}
-
-
 /* landing-page */
-.landing-page {
+.main-page {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
-  padding-top: 5rem;
+  padding-top: 3rem;
   background-color: #f1dcaebd;
-  gap: 5rem;
+  gap: 2rem;
 }
 
-.site-headline{    /*Add animation here*/
+.site-headline {
   font-size: 2.5rem;
-  border-bottom: 1px solid black;
+  position: relative;
+  display: inline-block;
 }
 
-.showcase {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  height: 70%;
-  border: 1px solid black;
+@keyframes expand-border {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
-.continents-container{
+.site-headline::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  width: 0;
+  background: black;
+  animation: expand-border 2s forwards;
+}
+
+.continents-container {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  width: 50%;
 }
 
-
-.continent-button{
+.btn {
   border: none;
   border-radius: 1rem;
-  font-size: 1.8rem;
-  text-align: center;
-  background-color: rgb(205, 205, 241);
-  padding: 1.2rem;
   cursor: pointer;
+  text-align: center;
+  background-color: #cfb0b0;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.continent-button:hover{
+.continent-button {
+  font-size: 1.8rem;
+  background-color: rgb(205, 205, 241);
+  padding: 1.2rem;
+}
+
+.continent-button:hover {
   background-color: rgb(115, 115, 238);
   color: white;
 }
 
+.chart-container {
+  width: 95%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.chart {
+  width: 100%;
+  height: 100%;
+}
 
+.countries-container {
+  width: 90%;
+  height: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
 
+.country-button {
+  width: 5%;
+  height: 10%;
+}
