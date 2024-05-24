@@ -30,19 +30,18 @@ export default class App {
       const countryButtons = document.querySelectorAll('#countries-container .btn');
       countryButtons.forEach(button => {
         button.addEventListener('click', async (event) => {
-          this.countriesContainer.innerHTML = '';
           const countryName = event.target.textContent.toLowerCase();
           const response = await this.handleApi.fetchCities(countryName);
           if (response && response.data) {
+            this.countriesContainer.innerHTML = countryName;
             const cities = response.data;
-
             const cityNames = cities.map(city => city.city);
             const populationByYear = {};
             cities.forEach(city => {
               city.populationCounts.forEach(populationCount => {
                 const year = populationCount.year;
                 const population = parseInt(populationCount.value, 10);
-
+                
                 if (!populationByYear[year]) {
                   populationByYear[year] = [];
                 }
