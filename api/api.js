@@ -22,7 +22,7 @@ export default class HandleApi {
 
   async fetchCities (countryName) {
     try {
-      const response = await fetch(CITIES_URL, {
+      const response = await fetch(this.citiesUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

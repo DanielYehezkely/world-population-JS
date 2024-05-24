@@ -5,16 +5,7 @@ export default class ChartHandler {
       type: 'line',
       data: {
         labels: [],
-        datasets: [{
-          label: 'Population',
-          data: [],
-          borderWidth: 1 
-        },
-        {
-          label: 'Neighbors',
-          data: [],
-          borderWidth: 1 
-        }]
+        datasets: []
       },
       options: {
         maintainAspectRatio: false,
@@ -30,8 +21,24 @@ export default class ChartHandler {
 
   updateChart(countryNames, populations, neighbors) {
     this.chart.data.labels = countryNames;
-    this.chart.data.datasets[0].data = populations;
-    this.chart.data.datasets[1].data = neighbors;
+    this.chart.data.datasets = [
+      {
+        label: 'Population',
+        data: populations,
+        borderWidth: 1
+      },
+      {
+        label: 'Neighbors',
+        data: neighbors,
+        borderWidth: 1
+      }
+    ];
+    this.chart.update();
+  }
+
+  updateChartWithCities(cityNames, datasets) {
+    this.chart.data.labels = cityNames;
+    this.chart.data.datasets = datasets;
     this.chart.update();
   }
 
