@@ -72,15 +72,19 @@
 }
 
 .chart-container {
-  width: 100%;
+  width: 90%;
   height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.chart{
+  cursor: pointer;
+}
+
 .countries-container {
-  width: 90%;
+  width: 95%;
   height: 25%;
   display: flex;
   flex-wrap: wrap;
