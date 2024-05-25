@@ -6,7 +6,7 @@
 
 # Ignore npm package-lock file if using npm for managing dependencies
 package-lock.json
-.json
+*.json
 
 # Ignore node_modules directory if using npm for managing dependencies
 node_modules/
