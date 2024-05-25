@@ -8,11 +8,11 @@ export default class App {
   constructor() {
     this.continentButtons = document.querySelectorAll('.continent-button');
     this.continentsContainer = document.getElementById('continents-container');
-    this.charContainer = document.getElementById('chart-container')
+    this.chartContainer = document.getElementById('chart-container')
     this.countriesContainer = document.getElementById('countries-container');
     this.apiHandler = new ApiHandler(COUNTRIES_URL, CITIES_URL);
     this.errorHandler = new ErrorHandler();
-    this.loader = new Loader(this.continentsContainer, this.charContainer, this.countriesContainer ); 
+    this.loader = new Loader(this.continentsContainer, this.chartContainer, this.countriesContainer ); 
     this.chartHandler = new ChartHandler();
   }
 
@@ -45,26 +45,7 @@ export default class App {
           if (response && response.data) {
             this.countriesContainer.innerHTML = countryName.toUpperCase();
             const cities = response.data;
-            const cityNames = cities.map(cityObj => cityObj.city);
-            const populationByYear = {};
-            cities.forEach(city => {
-              city.populationCounts.forEach(populationCount => {
-                const year = populationCount.year;
-                const population = parseInt(populationCount.value, 10);
-                if (!populationByYear[year]) {
-                  populationByYear[year] = [];
-                }
-                populationByYear[year].push(population);
-              });
-            });
-
-            const datasets = Object.keys(populationByYear).map(year => ({
-              label: year,
-              data: populationByYear[year],
-              borderWidth: 1
-            }));
-
-            this.chartHandler.updateChartWithCities(cityNames, datasets);
+            this.processCityData(cities)
           }
         } catch (error) {
           this.errorHandler.displayError(error.message);
@@ -73,6 +54,31 @@ export default class App {
         }
       });
     });
+  }
+
+  processCityData(cities) {
+    const cityNames = cities.map(cityObj => cityObj.city);
+    const populationByYear = {};
+
+    cities.forEach(city => {
+      city.populationCounts.forEach(populationCount => {
+        const year = populationCount.year;
+        const population = parseInt(populationCount.value, 10);
+
+        if (!populationByYear[year]) {
+          populationByYear[year] = [];
+        }
+        populationByYear[year].push(population);
+      });
+    });
+
+    const datasets = Object.keys(populationByYear).map(year => ({
+      label: year,
+      data: populationByYear[year],
+      borderWidth: 1
+    }));
+
+    this.chartHandler.updateChartWithCities(cityNames, datasets);
   }
 
   renderCountries(countries) {
