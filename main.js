@@ -1,4 +1,6 @@
 import App from "./modules/app.js";
 
-const app = new App();
-app.handleContinentClick();
+document.addEventListener('DOMContentLoaded', () => {
+  const app = new App();
+  app.handleContinentClick();
+});

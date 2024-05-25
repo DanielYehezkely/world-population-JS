@@ -101,9 +101,6 @@
   height: 10%;
 }
 
-.hidden {
-  display: none;
-}
 
 .error-message{
   color: red;
@@ -113,4 +110,18 @@
   border: red solid 2px;
   border-radius: 0.4rem;
   background-color: white;
+}
+
+.country-menu{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 60%;
+  background-color: white;
+  position: absolute;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px 1px rgb(122, 120, 120);
+}
+.hidden {
+  display: none;
 }
