@@ -79,7 +79,7 @@
   align-items: center;
 }
 
-.chart{
+.chart {
   cursor: pointer;
 }
 
@@ -100,5 +100,13 @@
 }
 
 .hidden {
-      display: none;
-    }
+  display: none;
+}
+
+.error-message{
+  color: red;
+  font-size: 3rem;
+  text-align: center;
+  width: 80%;
+  height: 20%;
+}
