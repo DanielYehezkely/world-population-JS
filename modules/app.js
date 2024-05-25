@@ -2,37 +2,44 @@ import { COUNTRIES_URL, CITIES_URL } from "../models/constants.js";
 import ApiHandler from "../api/api.js";
 import ChartHandler from "../modules/chart.js";
 import ErrorHandler from "../modules/error.js";
+import Loader from "../modules/loader.js";
 
 export default class App {
   constructor() {
     this.continentButtons = document.querySelectorAll('.continent-button');
+    this.continentsContainer = document.getElementById('continents-container');
     this.countriesContainer = document.getElementById('countries-container');
     this.apiHandler = new ApiHandler(COUNTRIES_URL, CITIES_URL);
     this.chartHandler = new ChartHandler();
     this.errorHandler = new ErrorHandler();
+    this.loader = new Loader(this.continentsContainer);
   }
 
-  async handleContinentClick() {
-    try {
-      this.continentButtons.forEach(button => {
-        button.addEventListener('click', async (event) => {
+  handleContinentClick() {
+    this.continentButtons.forEach(button => {
+      button.addEventListener('click', async (event) => {
+        try {
           const region = event.target.dataset.name;
+          this.loader.showLoader();
           const countries = await this.apiHandler.fetchCountries(region);
           this.renderCountries(countries);
           this.chartHandler.showChart();
-        });
+        } catch (error) {
+          this.errorHandler.displayError(error.message);
+        } finally {
+          this.loader.hideLoader();
+        }
       });
-    } catch (error) {
-      this.errorHandler.displayError(error.message);
-    }
+    });
   }
 
   async handleCountryClick() {
-    try {
-      const countryButtons = document.querySelectorAll('#countries-container .btn');
-      countryButtons.forEach(button => {
-        button.addEventListener('click', async (event) => {
+    const countryButtons = document.querySelectorAll('#countries-container .btn');
+    countryButtons.forEach(button => {
+      button.addEventListener('click', async (event) => {
+        try {
           const countryName = event.target.textContent.toLowerCase();
+          this.loader.showLoader(); 
           const response = await this.apiHandler.fetchCities(countryName);
           if (response && response.data) {
             this.countriesContainer.innerHTML = countryName.toUpperCase();
@@ -58,11 +65,13 @@ export default class App {
 
             this.chartHandler.updateChartWithCities(cityNames, datasets);
           }
-        });
+        } catch (error) {
+          this.errorHandler.displayError(error.message);
+        } finally {
+          this.loader.hideLoader();
+        }
       });
-    } catch (error) {
-      this.errorHandler.displayError(error.message);
-    }
+    });
   }
 
   renderCountries(countries) {

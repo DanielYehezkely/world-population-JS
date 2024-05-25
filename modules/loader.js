@@ -1,17 +1,17 @@
 export default class Loader {
-  constructor() {
-    this.loaderContainer = document.getElementById('loader-container');
+  constructor(continentsContainer) {
+    this.loaderContainer = continentsContainer;
+    this.originalClassName = continentsContainer.className;
+    this.originalHtml = continentsContainer.innerHTML;
   }
 
   showLoader() {
-    if (this.loaderContainer) {
-      this.loaderContainer.style.display = 'block';
-    }
+    this.loaderContainer.innerHTML = '';
+    this.loaderContainer.className = 'loader';
   }
 
   hideLoader() {
-    if (this.loaderContainer) {
-      this.loaderContainer.style.display = 'none';
-    }
+    this.loaderContainer.className = this.originalClassName;
+    this.loaderContainer.innerHTML = this.originalHtml;
   }
 }

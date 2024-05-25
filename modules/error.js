@@ -1,6 +1,6 @@
 export default class ErrorHandler {
   constructor() {
-    this.errorContainer = document.getElementById('countries-container');
+    this.errorContainer = document.getElementById('chart-container');
   }
 
   displayError(errorMessage) {
