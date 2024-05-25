@@ -122,6 +122,34 @@
   border-radius: 10px;
   box-shadow: 1px 1px 10px 1px rgb(122, 120, 120);
 }
+
+.country-menu {
+  position: absolute;
+  width: 70%;
+  height: 60%;
+  background-color: white;
+  box-shadow: 1px 1px 10px 1px rgb(116, 114, 114);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.country-menu .btn {
+  flex: 0 1 auto;
+  margin: 0.5rem;
+  padding: 1rem;
+  width: calc(100% / 3 - 1rem); /* Adjust the button size */
+  box-sizing: border-box;
+}
+
 .hidden {
   display: none;
+}
+
+.invisible{
+  visibility: hidden;
 }

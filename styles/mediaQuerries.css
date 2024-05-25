@@ -13,4 +13,7 @@
   .continents-container{
     width: 100%;
   }
+  .country-menu .btn {
+    width: calc(100% / 2 - 1rem); /* Adjust button size for smaller screens */
+  }
 }
