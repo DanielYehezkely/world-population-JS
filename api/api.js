@@ -17,7 +17,7 @@ export default class ApiHandler {
       const countriesData = await response.json();
       return countriesData.filter(country => country.region === region);
     } catch (error) {
-      this.errorHandler.displayError(error.message);
+      this.errorHandler.displayError(error);
       return [];
     }
   }
@@ -45,7 +45,7 @@ export default class ApiHandler {
       const data = await response.json();
       return data;
     } catch (error) {
-      this.errorHandler.displayError(error.message);
+      this.errorHandler.displayError(error);
       return null;
     }
   }
