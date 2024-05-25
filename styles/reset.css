@@ -20,6 +20,12 @@ body {
   font-weight: 400;
   line-height: 1.6;
   font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+img{
+  width: 15%;
+  height: 30%;
 }
 
 ul {
