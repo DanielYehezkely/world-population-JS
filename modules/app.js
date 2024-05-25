@@ -10,27 +10,22 @@ export default class App {
     this.continentsContainer = document.getElementById('continents-container');
     this.chartContainer = document.getElementById('chart-container')
     this.countriesContainer = document.getElementById('countries-container');
-    this.countryMenu = document.getElementById('country-menu')
-    this.countryMenuButton = document.getElementById('country-menu-button')
     this.apiHandler = new ApiHandler(COUNTRIES_URL, CITIES_URL);
     this.errorHandler = new ErrorHandler();
     this.loader = new Loader(this.continentsContainer, this.chartContainer, this.countriesContainer ); 
     this.chartHandler = new ChartHandler();
     this.handleResize();
-    this.handleContinentClick(); 
-    this.handleCountryMenuButtonClick();
   }
 
-   handleContinentClick() {
+  handleContinentClick() {
     this.continentButtons.forEach(button => {
       button.addEventListener('click', async (event) => {
         try {
           const region = event.target.dataset.name;
-          this.loader.showLoader();
+          this.loader.showLoader(); 
           const countries = await this.apiHandler.fetchCountries(region);
           this.renderCountries(countries);
           this.chartHandler.showChart();
-          this.countryMenuButton.classList.remove('hidden'); 
         } catch (error) {
           this.errorHandler.displayError(error.message);
         } finally {
@@ -101,20 +96,13 @@ export default class App {
 
   handleResize() {
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 600) {
-        this.countriesContainer.style.display = 'block';
-        this.countryMenuButton.style.display = 'none';
-      } else {
+      if (window.innerWidth < 600) {
         this.countriesContainer.style.display = 'none';
+      } 
+      if (window.innerWidth > 600) {
+        this.countriesContainer.style.display = 'flex'; // got o fix bugs here
       }
     });
-
     window.dispatchEvent(new Event('resize'));
-  }
-
-  handleCountryMenuButtonClick() {
-    this.countryMenuButton.addEventListener('click', () => {
-      this.countryMenu.classList.toggle('hidden'); 
-    });
   }
 }
