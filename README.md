@@ -1,6 +1,6 @@
 # World Population Web App <img src="./assets/icons/earth.ico" alt="Icon" width="26">
 
-Welcome to the World Population Web App! This JavaScript-based application is designed to help users explore population data from around the world. Built on the module design pattern, it provides an intuitive interface for visualizing population statistics by continent, country, and city.
+Welcome to the World Population Web App! This JavaScript-based application is designed to help users explore population data from around the world. Built on the module design pattern, it provides an intuitive interface for visualizing population statistics by continent, country, and city..
 
 ![Demo](./assets/video/world-population-gif.gif)
 
